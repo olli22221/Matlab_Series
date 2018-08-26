@@ -1,0 +1,1 @@
+function [sigma] = standardabweichung(
