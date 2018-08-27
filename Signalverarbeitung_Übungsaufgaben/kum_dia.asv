@@ -1,0 +1,8 @@
+function[kum,werte_cp] = kum_dia(rel_h,werte)
+
+kum = zeros(1,length(rel_h));
+werte_cp =  werte;
+for m = 1:length(werte)
+    for n = 1:m
+        
+        
