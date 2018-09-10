@@ -14,4 +14,5 @@ m2 = 1/numel(daten)*sum(daten_quad);
 z2 = var(daten);
 z3 = mean(power(daten-mean(daten),3));
 z4 = mean(power(daten-mean(daten),4));
+end
 

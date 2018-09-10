@@ -7,3 +7,4 @@ if x == 0
 else
     y =  x*fakultaet2(x-1);
 end
+

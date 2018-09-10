@@ -18,6 +18,7 @@ for n = 1:length(f)
 end
 
 c = sig_matrix \ sig_vector;
+end
 
 
 

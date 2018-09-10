@@ -8,3 +8,4 @@ end
 sum_e = f-fap;
 sum_e = sum_e.^2;
 e2 = sum(sum_e);
+end
