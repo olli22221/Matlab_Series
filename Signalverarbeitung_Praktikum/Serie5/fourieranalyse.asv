@@ -22,7 +22,7 @@ b_k(1)=0;
 
 for j = 2:length(b_k)
     
-    b_k(j) = (2/length(fn))*dot(fn,reshape(sin((j-1)*2*pi*n/length(fn)),length(n),1));
+    b_k(j) = (2/length(fn))*sum(fn.*reshape(sin((j-1)*2*pi*n/length(fn)),length(n),1));
     
 end
 
