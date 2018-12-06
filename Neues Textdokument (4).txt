@@ -1,0 +1,29 @@
+Aufgabe 1
+
+a)
+
+1.Strategy
+-Nein , weil alle Funktionen der Audiogeräte gleich funktionieren.
+Sie besitzen zwar teilweise unterschiedliche Medien allerdings hat das keine Auswirkungen auf die Funktionen wie z.b das Iterieren zwischen den Medien.
+Es muss also nichts gekapselt werrden
+
+
+2.Observer
+
+
+3.Composite
+Ja, denn die Audiogeräte kann man als Liste auffassen, welche diesselben Verhaltensweisen besitzen.
+
+
+
+4. Adapter
+
+
+
+5.Command Pattern
+
+Ja
+
+
+
+
