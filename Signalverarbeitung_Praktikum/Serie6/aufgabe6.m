@@ -12,9 +12,11 @@ hz_end = find(999.9999 < fq &  fq < 1000.1000 );
 hz_axis = fq(hz_start:hz_end);
 
 
+
+plot(hz_axis,abs(fft_gdur_wav(hz_start:hz_end)));
+
 xlabel('Frequenz in Hz')
 ylabel('Betragsspektrum')
-plot(hz_axis,abs(fft_gdur_wav(hz_start:hz_end)));
 xlim([100 1000])
 
 pause(5)

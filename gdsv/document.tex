@@ -1,0 +1,152 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{pst-barcode}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{marginnote}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath, tabu}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\geometry{
+	headsep=0.5cm,
+	headheight=2.5cm,
+	marginparwidth=2cm,
+	textheight=22cm,
+}
+\setlength{\headheight}{120pt}
+\usepackage{fancyhdr}
+\setlength\parindent{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.2}
+\allowdisplaybreaks
+\graphicspath{{../figures/}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+	\textit{Humboldt-Universität zu Berlin, Institut der Informatik}\\
+	\bigskip
+	\textbf{\Large{Grundlagen der Signalverarbeitung}}\\
+	\bigskip
+	Abgabe: 19.12.2018\\
+	Blatt 09\\[-1em]
+}
+\rhead{
+	Karadeniz, Serra 572423\\
+	Kewe, Nina       558403\\
+	Pohl, Oliver 	 577878\\
+	Zierle, Marc 	 581027\\[-1em]
+	\marginnote{\psbarcode[rotate=90,transx=1.75]{572423}{includetext height=0.5}{code39ext}}[1cm]
+	\marginnote{\psbarcode[rotate=90,transx=1.75]{558403}{includetext height=0.5}{code39ext}}[6.5cm]
+	\marginnote{\psbarcode[rotate=90,transx=1.75]{577878}{includetext height=0.5}{code39ext}}[12cm]
+	\marginnote{\psbarcode[rotate=90,transx=1.75]{581027}{includetext height=0.5}{code39ext}}[17.5cm]
+}
+
+\newcommand*{\QED}{\hfill\ensuremath{q.e.d.}}
+\newcommand{\ex}[1]{\newpage\subsubsection*{Aufgabe #1.}}
+\newcommand*{\simpleTable}[2]{
+	\begin{tabular}{@{} #1 @{}}
+		\toprule
+		#2
+		\bottomrule
+	\end{tabular}
+}
+\DeclareMathOperator{\sig}{sig}
+
+\begin{document}
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 31 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{31}
+	
+	Ausgangssignal:
+	\[ s^T = (1\ 2\ 3\ 1\ -1\ -1\ -1\ 0) \]\\
+	
+	Diskrete Cosinustransformationsmatrix:
+	
+	
+	\[\left(\begin{array}{rrrrrrrr}
+	0.3536 & 0.3536 & 0.3536 & 0.3536 & 0.3536 & 0.3536 & 0.3536 & 0.3536 \\
+	0.4904 & 0.4157 & 0.2778 & 0.0975 &-0.0975 &-0.2778 &-0.4157 &-0.4904 \\
+	0.4619 & 0.1913 & -0.1913 & -0.4619 & -0.4619 & -0.1913 & 0.1913 & 0.4619 \\
+	0.4157 & -0.0975 & -0.4904 & -0.2778 & 0.2778 & 0.4904 & 0.0975 & -0.4157 \\
+	0.3536 & -0.3536 & -0.3536 & 0.3536 & 0.3536 & -0.3536 & -0.3536 & 0.3536 \\
+	0.2778 & -0.4904 & 0.0975 & 0.4157 & -0.4157 & -0.0975 & 0.4904 & -0.2778 \\
+	0.1913 & -0.4619 & 0.4619 & -0.1913 & -0.1913 & 0.4619 & -0.4619 & 0.1913 \\
+	0.0975 & -0.2778 & 0.4157 & -0.4904 & 0.4904 & -0.4157 & 0.2778 & -0.0975
+	\end{array}\right)\]\\
+	
+	Spektrum $s'$:
+	\[s' = DCT \cdot s = (1.4142\ 3.0438\ 0.2706\ -2.3940\ -0.7071\ 0.0283\ 0.6533\ -0.0537)^T\]\\
+	
+	
+	Rücktransformation mit $A = DWT^T$:
+	\[ s = DCT^T \cdot s' = (1\ 2\ 3\ 1\ -1\ -1\ -1\ 0)^T \]\\
+	
+	$DCT^T=$
+	\[\left(\begin{array}{rrrrrrrr}
+	0.3536 & 0.4904 & 0.4619 & 0.4157 & 0.3536 & 0.2778 & 0.1913 & 0.0975 \\
+	0.3536 & 0.4157 & 0.1913 & -0.0975 &-0.3536 &-0.4904 &-0.4619 &-0.2778 \\
+	0.3536 & 0.2778 & -0.1913 & -0.4904 & -0.3536 & 0.0975 & 0.4619 & 0.4157 \\
+	0.3536 & 0.0975 & -0.4619 & -0.2778 & 0.3536 & 0.4157 & -0.1913 & -0.4904 \\
+	0.3536 & -0.0975 & -0.4619 & 0.2778 & 0.3536 & -0.4157 & -0.1913 & 0.4904 \\
+	0.3536 & -0.2778 & -0.1913 & 0.4904 & -0.3536 & -0.0975 & 0.4619 & -0.4157 \\
+	0.3536 & -0.4157 & 0.1913 & 0.0975 & -0.3536 & 0.4904 & -0.4619 & 0.2778 \\
+	0.3536 & -0.4904 & 0.4619 & -0.4157 & 0.3536 & -0.2778 & 0.1913 & -0.0975
+	\end{array}\right)\]
+	
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 32 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{32}
+	
+	Ausgangssignal:
+	\[ s^T = (1\ 2\ 3\ 1\ -1\ -1\ -1\ 0) \]\\
+	
+	Diskrete Sinustransformationsmatrix:
+	
+	\[\left(\begin{array}{rrrrrrrr}
+	0.1612 & 0.3030 & 0.4082 & 0.4642 & 0.4642 & 0.4082 & 0.3030 & 0.1612 \\
+	0.3030 & 0.4642 & 0.4082 & 0.1612 &-0.1612 &-0.4082 &-0.4642 &-0.3030 \\
+	0.4082 & 0.4082 & 0 & -0.4082 & -0.4082 & 0 & 0.4082 & 0.4082 \\
+	0.4642 & 0.1612 & -0.4082 & -0.3030 & 0.3030 & 0.4082 & -0.1612 & -0.4642 \\
+	0.4642 & -0.1612 & -0.4082 & 0.3030 & 0.3030 & -0.4082 & -0.1612 & 0.4642 \\
+	0.4082 & -0.4082 & 0 & 0.4082 & -0.4082 & 0 & 0.4082 & -0.4082 \\
+	0.3030 & -0.4642 & 0.4082 & -0.1612 & -0.1612 & 0.4082 & -0.4642 & 0.3030 \\
+	0.1612 & -0.3030 & 0.4082 & -0.4642 & 0.4642 & -0.4082 & 0.3030 & -0.1612
+	\end{array}\right)\]\\
+	
+	Spektrum $s'$:
+	\[s' = DCT \cdot s = (1.2807\ 3.6512\ 0.8165\ -1.2911\ -0.5135\ 0\ 0.6553\ -0.0433)^T\]\\
+	
+	
+	
+	Rücktransformation mit $A = DST^T$:
+	\[ s = DST^T \cdot s' = (1\ 2\ 3\ 1\ -1\ -1\ -1\ 0)^T \]\\
+	
+	$DST^T=$
+	\[\left(\begin{array}{rrrrrrrr}
+	0.1612 & 0.3030 & 0.4082 & 0.4642 & 0.4642 & 0.4082 & 0.3030 & 0.1612 \\
+	0.3030 & 0.4642 & 0.4082 & 0.1612 &-0.1612 &-0.4082 &-0.4642 &-0.3030 \\
+	0.4082 & 0.4082 & 0 & -0.4082 & -0.4082 & 0 & 0.4082 & 0.4082 \\
+	0.4642 & 0.1612 & -0.4082 & -0.3030 & 0.3030 & 0.4082 & -0.1612 & -0.4642 \\
+	0.4642 & -0.1612 & -0.4082 & 0.3030 & 0.3030 & -0.4082 & -0.1612 & 0.4642 \\
+	0.4082 & -0.4082 & 0 & 0.4082 & -0.4082 & 0 & 0.4082 & -0.4082 \\
+	0.3030 & -0.4642 & 0.4082 & -0.1612 & -0.1612 & 0.4082 & -0.4642 & 0.3030 \\
+	0.1612 & -0.3030 & 0.4082 & -0.4642 & 0.4642 & -0.4082 & 0.3030 & -0.1612
+	\end{array}\right)\]
+	
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 33 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{33}
+	
+	Ausgangssignal:
+	\[ s^T = (1\ 2\ 3\ 1) \]\\
+	
+	
+	
+	
+	
+	
+	\end{document}
